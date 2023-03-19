@@ -34,12 +34,9 @@ const Register = () => {
               <input type="password" placeholder="Confirm Password" className="login__input" />
             </div>
 
-            <a href="#" className="login__forgot">Forgot password?</a>
-
-            <a href="#" className="login__button">Sign In</a>
+            <a href="#" className="login__button">Sign Up</a>
 
             <div>
-              <span className="login__account">Don't have an Account ?</span>
               <Link to='/login' className="login__signin" id="sign-up">Sign In</Link>
             </div>
           </form>
