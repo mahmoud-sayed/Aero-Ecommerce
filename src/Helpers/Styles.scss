@@ -1,0 +1,24 @@
+$width_85: 85%;
+$width_95: 95%;
+
+@mixin screen_wrapper {
+  display: flex;
+  justify-content: center;
+
+  //Small screens, laptops
+  @media all and (min-width:769px) {
+    width: $width_85;
+  }
+
+  //iPads, Tablets
+  @media all and (min-width:481px) and (max-width:768px) {
+    width: $width_95;
+  }
+
+  // mobile view
+  @media all and (max-width: 480px) {
+    width: $width_95;
+  }
+}
+
+@mixin section_wrapper {}

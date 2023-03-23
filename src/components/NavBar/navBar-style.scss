@@ -1,0 +1,5 @@
+@import './../../Helpers/Styles.scss';
+
+.nav_wrapper {
+  @include screen_wrapper;
+}
