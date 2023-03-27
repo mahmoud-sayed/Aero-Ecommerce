@@ -1,0 +1,14 @@
+@import './../../Helpers/style_needs.scss';
+
+.menu_wrapper {
+  @include min-cards-design-for-all-content();
+  width: fit-content;
+  display: none;
+  position: absolute;
+  // margin-top: 10px;
+  cursor: pointer;
+}
+
+.show {
+  display: block;
+}

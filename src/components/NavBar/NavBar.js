@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './navBar-style.scss';
 import logo from './../../assets/logo-aero1.png';
 import { Link } from 'react-router-dom';
@@ -6,14 +6,27 @@ import { FaSearch, FaRegUser } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { motion } from 'framer-motion';
 import vars from './../../Helpers/style_needs.scss';
+import Menu from './../Menu/Menu';
 
 const NavBar = () => {
   const [styleChange, setStyleChange] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
+  const [menuStyle, setMenuStyle] = useState(false);
 
   const changeNavBarStyle = () => {
-    window.scrollY > 70 ? setStyleChange(true) : setStyleChange(false);
+    window.scrollY >= 50 ? setStyleChange(true) : setStyleChange(false);
   };
   window.addEventListener('scroll', changeNavBarStyle);
+
+  // const colorTrouth = ref.current.classList.contains('show');
+  useEffect(() => {
+    if (ref.current.classList.contains('show')) {
+      setMenuStyle(true);
+    } else {
+      setMenuStyle(false);
+    }
+  }, [isOpen]);
 
   return (
     <motion.nav
@@ -33,25 +46,28 @@ const NavBar = () => {
       transition={styleChange === true ? { ease: "easeInOut", duration: .5 } : ''}
       className='nav_wrapper'
     >
-      <motion.div
-
-        className='navbar'
-      >
+      <motion.div className='navbar'>
         <div className='nav_logo'>
           <img src={logo} alt="aero logo" />
         </div>
         <div className='nav_items'>
-          <Link className='nav_item'>
+          <Link className='nav_item'
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
+          >
             <motion.p
               initial={{ color: vars.textWhite }}
               whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
+            // style={menuStyle === true ? { color: vars.redColor, scale: 1.1 } : ''}
             >Home &#11167;</motion.p>
+            <Menu refe={ref} isOpen={isOpen} />
           </Link>
           <Link className='nav_item' >
             <motion.p
               initial={{ color: vars.textWhite }}
               whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
             >Shop &#11167;</motion.p>
+            <Menu refe={ref} isOpen={isOpen} />
           </Link>
           <Link className='nav_item' >
             <motion.p
