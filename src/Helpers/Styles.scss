@@ -1,13 +1,14 @@
-$width_85: 85%;
+$width_90: 90%;
 $width_95: 95%;
 
 @mixin screen_wrapper {
   display: flex;
   justify-content: center;
+  margin: 0 auto;
 
   //Small screens, laptops
   @media all and (min-width:769px) {
-    width: $width_85;
+    width: $width_90;
   }
 
   //iPads, Tablets
@@ -21,4 +22,7 @@ $width_95: 95%;
   }
 }
 
-@mixin section_wrapper {}
+@mixin display_flex ($row: row) {
+  display: flex;
+  flex-direction: $row;
+}

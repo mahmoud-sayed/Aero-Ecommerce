@@ -173,3 +173,10 @@ $medium-lightBlack-text-color-jobPage: #4d525b;
 @media all and (max-width: 480px) {}
 
 */
+
+
+
+:export {
+  textWhite: $white;
+  redColor: $dark-red;
+}

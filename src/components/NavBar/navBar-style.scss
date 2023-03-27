@@ -1,5 +1,75 @@
 @import './../../Helpers/Styles.scss';
+@import './../../Helpers/style_needs.scss';
 
 .nav_wrapper {
-  @include screen_wrapper;
+  @include display_flex();
+  align-items: center;
+  background-color: rgba(29, 28, 28, 0.67);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+
+  .navbar {
+    @include screen_wrapper;
+    width: 100%;
+    @include display_flex();
+    justify-content: space-between;
+    align-items: center;
+
+    .nav_logo {
+      width: 70px;
+    }
+
+    .nav_items {
+      @include display_flex();
+      gap: 3rem;
+
+      a {
+        font-size: $font-size-14;
+        font-weight: $font-wight-600;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+    }
+
+    .Nav_cart_account_search {
+      @include display_flex();
+      gap: 2rem;
+
+      p {
+        .icons {
+          font-size: $font-size-20;
+          font-weight: $font-wight-600;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+      }
+
+      .cart_icon {
+        @include display_flex();
+
+        .cart_counter {
+          @include display_flex();
+          justify-content: center;
+          align-items: center;
+          background-color: $dark-red;
+          min-width: 17px;
+          height: 18px;
+          border-radius: 40%;
+          margin-top: -10px;
+
+          span {
+            display: inline;
+            font-size: $font-size-12;
+            font-weight: 600;
+            padding: 3px;
+          }
+        }
+      }
+    }
+  }
+
 }
