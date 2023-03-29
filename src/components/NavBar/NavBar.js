@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 import './navBar-style.scss';
 import logo from './../../assets/logo-aero1.png';
 import { Link } from 'react-router-dom';
@@ -6,13 +6,16 @@ import { FaSearch, FaRegUser } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { motion } from 'framer-motion';
 import vars from './../../Helpers/style_needs.scss';
-import Menu from './../Menu/Menu';
+import MenuNavBar from './../Menu/MenuNavBar';
+import MenuUser from './../Menu/MenuUser';
 
 const NavBar = () => {
   const [styleChange, setStyleChange] = useState(false);
+  const [isUserOpen, setIsUserOpen] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
-  const [menuStyle, setMenuStyle] = useState(false);
+  const [itemIndex, setItemIndex] = useState();
+  // const [menuStyle, setMenuStyle] = useState(false);
 
   const changeNavBarStyle = () => {
     window.scrollY >= 50 ? setStyleChange(true) : setStyleChange(false);
@@ -20,13 +23,15 @@ const NavBar = () => {
   window.addEventListener('scroll', changeNavBarStyle);
 
   // const colorTrouth = ref.current.classList.contains('show');
-  useEffect(() => {
-    if (ref.current.classList.contains('show')) {
-      setMenuStyle(true);
-    } else {
-      setMenuStyle(false);
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (ref.current?.classList.contains('show')) {
+  //     setMenuStyle(true);
+  //   } else {
+  //     setMenuStyle(false);
+  //   }
+  // }, [isOpen]);
+
+
 
   return (
     <motion.nav
@@ -51,30 +56,30 @@ const NavBar = () => {
           <img src={logo} alt="aero logo" />
         </div>
         <div className='nav_items'>
-          <Link className='nav_item'
-            onMouseEnter={() => setIsOpen(true)}
-            onMouseLeave={() => setIsOpen(false)}
-          >
-            <motion.p
-              initial={{ color: vars.textWhite }}
-              whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
-            // style={menuStyle === true ? { color: vars.redColor, scale: 1.1 } : ''}
-            >Home &#11167;</motion.p>
-            <Menu refe={ref} isOpen={isOpen} />
-          </Link>
-          <Link className='nav_item' >
-            <motion.p
-              initial={{ color: vars.textWhite }}
-              whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
-            >Shop &#11167;</motion.p>
-            <Menu refe={ref} isOpen={isOpen} />
-          </Link>
-          <Link className='nav_item' >
-            <motion.p
-              initial={{ color: vars.textWhite }}
-              whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
-            >featured &#11167;</motion.p>
-          </Link>
+
+          {['home', 'shop', 'featured', 'pages'].map((item, index) => (
+
+            <Fragment key={index}>
+              <Link className='nav_item'
+                onMouseEnter={() => { setIsOpen(true); setItemIndex(index); }}
+                onMouseLeave={() => { setIsOpen(false); setItemIndex(''); }}
+              >
+                <motion.p
+                  initial={{ color: vars.textWhite }}
+                  whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
+                // style={menuStyle === true ? { color: vars.redColor, scale: 1.1 } : ''}
+                >
+                  {item}
+                  {item !== 'home' ? <span>&#11167;</span> : ''}
+                </motion.p>
+                {
+                  itemIndex === index && item !== 'home' ?
+                    (<MenuNavBar refe={ref} isOpen={isOpen} itemName={item} />) : ''
+                }
+              </Link>
+            </Fragment>
+          ))}
+
         </div>
         <div className='Nav_cart_account_search'>
           <motion.p
@@ -87,7 +92,15 @@ const NavBar = () => {
             initial={{ color: vars.textWhite }}
             whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
           >
-            <FaRegUser className='icons nav_account_sign' />
+            <FaRegUser
+              onMouseEnter={() => setIsUserOpen(true)}
+              onMouseLeave={() => setIsUserOpen(false)}
+              className='icons nav_account_sign' />
+            {
+              isUserOpen &&
+              (<MenuUser isUserOpen={isUserOpen} />)
+            }
+
           </motion.p>
           <motion.p
             initial={{ color: vars.textWhite }}
