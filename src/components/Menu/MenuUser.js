@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 const MenuUser = ({ isUserOpen }) => {
   const [keepOpen, setKeepOpen] = useState(false);
+
   return (
     <motion.div
       initial={{ height: '0px', width: '0px' }}
@@ -12,11 +13,9 @@ const MenuUser = ({ isUserOpen }) => {
       onMouseEnter={() => setKeepOpen(true)}
       onMouseLeave={() => setKeepOpen(false)}
       className={isUserOpen === true || keepOpen === true ? 'show menu_wrapper' : 'menu_wrapper'}
+      style={{ right: 0 }}
     >
-      <p>asdsaddasddddd</p>
-      <p>asdsaddasddddd</p>
-      <p>asdsaddasddddd</p>
-      <p>asdsaddasddddd</p>
+      asd
     </motion.div>
   );
 };

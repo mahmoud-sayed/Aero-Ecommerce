@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Menu-style.scss';
 import { motion } from 'framer-motion';
 
@@ -33,32 +33,47 @@ const menuItems = {
   ]
 };
 
-const MenuNavBar = ({ isOpen, refe, itemName, children }) => {
+const MenuNavBar = ({ isOpen, itemName }) => {
   const [keepOpen, setKeepOpen] = useState(false);
+  const [itemsToLoopThrough, setItemsToLoopThrough] = useState('');
+
 
   const iterationFunc = (itemToIterateOn) => {
     for (const key in itemToIterateOn) {
       if (itemName === key) {
-        console.log(typeof (key));
+        setItemsToLoopThrough(key);
       }
     }
   };
-  iterationFunc(menuItems);
+
+  useEffect(() => {
+    iterationFunc(menuItems);
+  }, [isOpen]);
+
+
+  const MenuData = () => {
+    if (itemsToLoopThrough === 'shop') {
+      return (<p>shop</p>);
+    } else if (itemsToLoopThrough === 'featured') {
+      return (<p>featured</p>);
+    }
+    else if (itemsToLoopThrough === 'pages') {
+      return (<p>pages</p>);
+    }
+  };
 
   return (
     <motion.div
       initial={{ height: '0px', width: '0px' }}
       animate={{ height: 'initial', width: 'initial' }}
       transition={{ ease: 'easeInOut', duration: .2 }}
-      onMouseEnter={() => setKeepOpen(true)}
+      onMouseEnter={() => { setKeepOpen(true); }}
       onMouseLeave={() => setKeepOpen(false)}
       className={isOpen === true || keepOpen === true ? 'show menu_wrapper' : 'menu_wrapper'}
-      ref={refe}
+      style={{ left: 0 }}
     >
-      <p>asdsaddasddddd</p>
-      <p>asdsaddasddddd</p>
-      <p>asdsaddasddddd</p>
-      <p>asdsaddasddddd</p>
+      dd
+      <MenuData />
     </motion.div>
   );
 };

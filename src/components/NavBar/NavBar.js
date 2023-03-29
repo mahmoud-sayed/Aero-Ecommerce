@@ -1,4 +1,4 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import './navBar-style.scss';
 import logo from './../../assets/logo-aero1.png';
 import { Link } from 'react-router-dom';
@@ -13,23 +13,15 @@ const NavBar = () => {
   const [styleChange, setStyleChange] = useState(false);
   const [isUserOpen, setIsUserOpen] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef(null);
   const [itemIndex, setItemIndex] = useState();
-  // const [menuStyle, setMenuStyle] = useState(false);
+
 
   const changeNavBarStyle = () => {
     window.scrollY >= 50 ? setStyleChange(true) : setStyleChange(false);
   };
   window.addEventListener('scroll', changeNavBarStyle);
 
-  // const colorTrouth = ref.current.classList.contains('show');
-  // useEffect(() => {
-  //   if (ref.current?.classList.contains('show')) {
-  //     setMenuStyle(true);
-  //   } else {
-  //     setMenuStyle(false);
-  //   }
-  // }, [isOpen]);
+
 
 
 
@@ -67,14 +59,13 @@ const NavBar = () => {
                 <motion.p
                   initial={{ color: vars.textWhite }}
                   whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
-                // style={menuStyle === true ? { color: vars.redColor, scale: 1.1 } : ''}
                 >
                   {item}
                   {item !== 'home' ? <span>&#11167;</span> : ''}
                 </motion.p>
                 {
                   itemIndex === index && item !== 'home' ?
-                    (<MenuNavBar refe={ref} isOpen={isOpen} itemName={item} />) : ''
+                    (<MenuNavBar isOpen={isOpen} itemName={item} />) : ''
                 }
               </Link>
             </Fragment>
@@ -82,27 +73,24 @@ const NavBar = () => {
 
         </div>
         <div className='Nav_cart_account_search'>
-          <motion.p
+          <motion.div
             initial={{ color: vars.textWhite }}
             whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
           >
             <FaSearch className='icons nav_search_icon' />
-          </motion.p>
-          <motion.p
+          </motion.div>
+          <motion.div
             initial={{ color: vars.textWhite }}
             whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
           >
             <FaRegUser
-              onMouseEnter={() => setIsUserOpen(true)}
+              onClick={() => setIsUserOpen(true)}
               onMouseLeave={() => setIsUserOpen(false)}
               className='icons nav_account_sign' />
-            {
-              isUserOpen &&
-              (<MenuUser isUserOpen={isUserOpen} />)
-            }
+            {isUserOpen && (<MenuUser isUserOpen={isUserOpen} />)}
 
-          </motion.p>
-          <motion.p
+          </motion.div>
+          <motion.div
             initial={{ color: vars.textWhite }}
             whileHover={{ color: vars.redColor, scale: 1.1, transition: { duration: .2 } }}
             className='cart_icon'
@@ -116,7 +104,7 @@ const NavBar = () => {
                 0
               </motion.span>
             </motion.span>
-          </motion.p>
+          </motion.div>
         </div>
       </motion.div>
     </motion.nav >
