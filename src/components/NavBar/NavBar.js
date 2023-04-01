@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import './navBar-style.scss';
 import logo from './../../assets/logo-aero1.png';
-import { Link } from 'react-router-dom';
 import { FaSearch, FaRegUser } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { motion } from 'framer-motion';
@@ -52,7 +51,7 @@ const NavBar = () => {
           {['home', 'shop', 'featured', 'pages'].map((item, index) => (
 
             <Fragment key={index}>
-              <Link className='nav_item'
+              <div className='nav_item'
                 onMouseEnter={() => { setIsOpen(true); setItemIndex(index); }}
                 onMouseLeave={() => { setIsOpen(false); setItemIndex(''); }}
               >
@@ -67,7 +66,7 @@ const NavBar = () => {
                   itemIndex === index && item !== 'home' ?
                     (<MenuNavBar isOpen={isOpen} itemName={item} />) : ''
                 }
-              </Link>
+              </div>
             </Fragment>
           ))}
 

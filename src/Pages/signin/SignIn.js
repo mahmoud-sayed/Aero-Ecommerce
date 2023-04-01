@@ -23,8 +23,8 @@ const SignIn = () => {
               <i className='bx bx-lock-alt login__icon'></i>
               <input type="password" placeholder="Password" className="login__input" />
             </div>
-            <a href="#" className="login__forgot">Forgot password?</a>
-            <a href="#" className="login__button">Sign In</a>
+            <Link to='#' className="login__forgot">Forgot password?</Link>
+            <Link to='#' className="login__button">Sign In</Link>
             <div>
               <span className="login__account">Don't have an Account ?</span>
               <Link to='/register' className="login__signin" id="sign-up">Sign Up</Link>

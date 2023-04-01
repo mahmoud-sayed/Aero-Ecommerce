@@ -34,7 +34,7 @@ const Register = () => {
               <input type="password" placeholder="Confirm Password" className="login__input" />
             </div>
 
-            <a href="#" className="login__button">Sign Up</a>
+            <Link to='#' className="login__button">Sign Up</Link>
 
             <div>
               <Link to='/login' className="login__signin" id="sign-up">Sign In</Link>

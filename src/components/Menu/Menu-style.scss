@@ -1,4 +1,5 @@
 @import './../../Helpers/style_needs.scss';
+@import './../../Helpers/Styles.scss';
 
 .menu_wrapper {
   @include min-cards-design-for-all-content();
@@ -11,4 +12,8 @@
 
 .show {
   display: block;
+
+  .list_header_paper {
+    @include display_flex()
+  }
 }

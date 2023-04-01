@@ -1,64 +1,110 @@
 import React, { useState, useEffect } from 'react';
 import './Menu-style.scss';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 
-const menuItems = {
-  shop: {
-    wheels: [1, 2, 3, 4],
-    Decoration: [1, 2, 3, 4],
-    accessories: [1, 2, 3, 4],
-    engine: [1, 2, 3, 4],
-  },
-  featured: {
-    item1: {
-      img: '',
-      name: 'AOPO DESIGNS WOOLRICH KLETTERSACK',
-      price: 150.00
-    },
-    item2: {
-      img: '',
-      name: 'AOPO DESIGNS WOOLRICH KLETTERSACK',
-      price: 150.00
-    },
-    item3: {
-      img: '',
-      name: 'AOPO DESIGNS WOOLRICH KLETTERSACK',
-      price: 150.00
-    },
-
-  },
-  pages: [
-    'home', 'cart', 'check out', 'confirmation', 'information', 'payment', 'products', 'register', 'shipping', 'signIn', 'single Product View', 'whish List'
-  ]
-};
 
 const MenuNavBar = ({ isOpen, itemName }) => {
   const [keepOpen, setKeepOpen] = useState(false);
   const [itemsToLoopThrough, setItemsToLoopThrough] = useState('');
 
 
-  const iterationFunc = (itemToIterateOn) => {
-    for (const key in itemToIterateOn) {
-      if (itemName === key) {
-        setItemsToLoopThrough(key);
-      }
-    }
-  };
 
+  const menuItems = ['shop', 'featured', 'pages'];
   useEffect(() => {
+    const iterationFunc = (itemToIterateOn) => {
+      for (const key of itemToIterateOn) {
+        if (itemName === key) {
+          setItemsToLoopThrough(key);
+        }
+      }
+    };
     iterationFunc(menuItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
 
+  // let shopData = [];
+  // itemsToLoopThrough.forEach((key, val) => {
+  //   console.log(key);
+  // });
+
   const MenuData = () => {
     if (itemsToLoopThrough === 'shop') {
-      return (<p>shop</p>);
+      return (
+        <div className='list_header_paper'>
+          <div>
+            <p className='list_header'>wheels</p>
+            {[1, 2, 3, 4].map((item, index) => (
+              <div key={index}>
+                <Link className='list_item' >{item}</Link>
+              </div>
+            ))
+            }
+          </div>
+          <div>
+            <p className='list_header'>Decoration</p>
+            {[1, 2, 3, 4].map((item, index) => (
+              <div key={index}>
+                <Link className='list_item' >{item}</Link>
+              </div>
+            ))
+            }
+          </div>
+          <div>
+            <p className='list_header'>accessories</p>
+            {[1, 2, 3, 4].map((item, index) => (
+              <div key={index}>
+                <Link className='list_item' >{item}</Link>
+              </div>
+            ))
+            }
+          </div>
+          <div>
+            <p className='list_header'>engine</p>
+            {[1, 2, 3, 4].map((item, index) => (
+              <div key={index}>
+                <Link className='list_item' >{item}</Link>
+              </div>
+            ))
+            }
+          </div>
+        </div>
+      );
     } else if (itemsToLoopThrough === 'featured') {
-      return (<p>featured</p>);
+      return (
+        <div className='list_header_paper'>
+          <div className='featured_product'>
+            <img src="img_girl.jpg" alt='' />
+            <p className='featured_product_name'>AOPO DESIGNS WOOLRICH KLETTERSACK</p>
+            <p className='featured_product_price'>$150</p>
+          </div>
+          <div className='featured_product'>
+            <img src="img_girl.jpg" alt='' />
+            <p className='featured_product_name'>AOPO DESIGNS WOOLRICH KLETTERSACK</p>
+            <p className='featured_product_price'>$150</p>
+          </div>
+          <div className='featured_product'>
+            <img src="img_girl.jpg" alt='' />
+            <p className='featured_product_name'>AOPO DESIGNS WOOLRICH KLETTERSACK</p>
+            <p className='featured_product_price'>$150</p>
+          </div>
+        </div>
+      );
     }
     else if (itemsToLoopThrough === 'pages') {
-      return (<p>pages</p>);
+      return (
+        <div className='list_header_paper'>
+          <div>
+            {[
+              'home', 'cart', 'check out', 'confirmation', 'information', 'payment', 'products', 'register', 'shipping', 'signIn', 'single Product View', 'whish List'
+            ].map((item, index) => (
+              <Link to='#' key={index}>{item}</Link>
+            ))}
+          </div>
+        </div>
+      );
     }
   };
 
@@ -72,7 +118,6 @@ const MenuNavBar = ({ isOpen, itemName }) => {
       className={isOpen === true || keepOpen === true ? 'show menu_wrapper' : 'menu_wrapper'}
       style={{ left: 0 }}
     >
-      dd
       <MenuData />
     </motion.div>
   );
