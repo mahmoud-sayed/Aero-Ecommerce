@@ -33,12 +33,16 @@ const MenuNavBar = ({ isOpen, itemName }) => {
   const MenuData = () => {
     if (itemsToLoopThrough === 'shop') {
       return (
-        <div className='list_header_paper'>
+        <motion.div className='list_header_paper'
+          initial={{ height: '0px', width: '0px' }}
+          animate={{ height: 'fit-content', width: 'fit-content' }}
+          transition={{ ease: 'easeInOut', duration: .2 }}
+        >
           <div>
             <p className='list_header'>wheels</p>
             {[1, 2, 3, 4].map((item, index) => (
               <div key={index}>
-                <Link className='list_item' >{item}</Link>
+                <Link to='/products' className='list_item' >{item}</Link>
               </div>
             ))
             }
@@ -70,11 +74,15 @@ const MenuNavBar = ({ isOpen, itemName }) => {
             ))
             }
           </div>
-        </div>
+        </motion.div>
       );
     } else if (itemsToLoopThrough === 'featured') {
       return (
-        <div className='list_header_paper'>
+        <motion.div className='list_header_paper'
+          initial={{ height: '0px', width: '0px' }}
+          animate={{ height: 'fit-content', width: 'fit-content' }}
+          transition={{ ease: 'easeInOut', duration: .2 }}
+        >
           <div className='featured_product'>
             <img src="img_girl.jpg" alt='' />
             <p className='featured_product_name'>AOPO DESIGNS WOOLRICH KLETTERSACK</p>
@@ -90,29 +98,33 @@ const MenuNavBar = ({ isOpen, itemName }) => {
             <p className='featured_product_name'>AOPO DESIGNS WOOLRICH KLETTERSACK</p>
             <p className='featured_product_price'>$150</p>
           </div>
-        </div>
+        </motion.div>
       );
     }
     else if (itemsToLoopThrough === 'pages') {
       return (
-        <div className='list_header_paper'>
+        <motion.div className='list_header_paper'
+          initial={{ height: '0px', width: '0px' }}
+          animate={{ height: 'fit-content', width: 'fit-content' }}
+          transition={{ ease: 'easeInOut', duration: .2 }}
+        >
           <div>
             {[
               'home', 'cart', 'check out', 'confirmation', 'information', 'payment', 'products', 'register', 'shipping', 'signIn', 'single Product View', 'whish List'
             ].map((item, index) => (
-              <Link to='#' key={index}>{item}</Link>
+              <div>
+                <Link to='#' key={index}>{item}</Link>
+              </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       );
     }
   };
 
   return (
     <motion.div
-      initial={{ height: '0px', width: '0px' }}
-      animate={{ height: 'initial', width: 'initial' }}
-      transition={{ ease: 'easeInOut', duration: .2 }}
+
       onMouseEnter={() => { setKeepOpen(true); }}
       onMouseLeave={() => setKeepOpen(false)}
       className={isOpen === true || keepOpen === true ? 'show menu_wrapper' : 'menu_wrapper'}

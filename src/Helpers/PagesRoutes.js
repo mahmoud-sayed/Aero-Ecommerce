@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import ReusableNavFooter from './../components/reusable_nav_footer/reusable_nav_footer';
 
 // pages
 import Home from '../Pages/home/Home';
@@ -32,11 +33,17 @@ const LazySingleProduct = lazy(() => import('./../Pages/singleProduct/SingleProd
 const PagesRoutes = () => {
   return (
     <Routes>
-      <Route index path='/' element={<Suspense fallback='Loading...'><Home /></Suspense>} />
+      <Route index path='/' element={
+        <ReusableNavFooter>
+          <Suspense fallback='Loading...'>
+            <Home />
+          </Suspense>
+        </ReusableNavFooter>
+      } />
       <Route path='/login' element={<Suspense fallback='Loading...'><LazySignIn /></Suspense>} />
       <Route path='/register' element={<Suspense fallback='Loading...'><LazyRegister /></Suspense>} />
-      <Route path='/products' element={<Suspense fallback='Loading...'><LazyProducts /></Suspense>} />
-      <Route path='/products/:productId' element={<Suspense fallback='Loading...'><LazySingleProduct /></Suspense>} />
+      <Route path='/products' element={<ReusableNavFooter><Suspense fallback='Loading...'><LazyProducts /></Suspense></ReusableNavFooter>} />
+      <Route path='/products/:productId' element={<ReusableNavFooter><Suspense fallback='Loading...'><LazySingleProduct /></Suspense></ReusableNavFooter>} />
       <Route path='/cart' element={<Suspense fallback='Loading...'><LazyCart /></Suspense>} />
       <Route path='/checkOut' element={<Suspense fallback='Loading...'><LazyCheckOut /></Suspense>} />
       <Route path='/confirmation' element={<Suspense fallback='Loading...'><LazyConfirmation /></Suspense>} />
