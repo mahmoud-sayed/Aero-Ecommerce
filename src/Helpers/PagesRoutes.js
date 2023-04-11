@@ -40,6 +40,13 @@ const PagesRoutes = () => {
           </Suspense>
         </ReusableNavFooter>
       } />
+      <Route index path='/aeio' element={
+        <ReusableNavFooter>
+          <Suspense fallback='Loading...'>
+            <Home />
+          </Suspense>
+        </ReusableNavFooter>
+      } />
       <Route path='/login' element={<Suspense fallback='Loading...'><LazySignIn /></Suspense>} />
       <Route path='/register' element={<Suspense fallback='Loading...'><LazyRegister /></Suspense>} />
       <Route path='/products' element={<ReusableNavFooter><Suspense fallback='Loading...'><LazyProducts /></Suspense></ReusableNavFooter>} />
