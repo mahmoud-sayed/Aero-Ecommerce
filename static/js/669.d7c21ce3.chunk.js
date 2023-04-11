@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkaeio=self.webpackChunkaeio||[]).push([[669],{669:function(e,n,u){u.r(n);u(791);var i=u(184);n.default=function(){return(0,i.jsx)("div",{children:"SingleProduct"})}}}]);
+//# sourceMappingURL=669.d7c21ce3.chunk.js.map

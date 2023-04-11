@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/442.bcf962ea.chunk.js","mappings":"6JAQA,UANiB,WACf,OACEA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,YAET,C","sources":["Pages/shipping/Shipping.js"],"sourcesContent":["import React from 'react';\r\n\r\nconst Shipping = () => {\r\n  return (\r\n    <div>Shipping</div>\r\n  );\r\n};\r\n\r\nexport default Shipping;"],"names":["_jsx","children"],"sourceRoot":""}
