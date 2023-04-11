@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunklast_site_before_work=self.webpackChunklast_site_before_work||[]).push([[442],{442:function(e,r,s){s.r(r);s(791);var t=s(184);r.default=function(){return(0,t.jsx)("div",{children:"Shipping"})}}}]);
+//# sourceMappingURL=442.bcf962ea.chunk.js.map

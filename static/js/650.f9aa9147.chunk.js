@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunklast_site_before_work=self.webpackChunklast_site_before_work||[]).push([[650],{650:function(e,s,t){t(791);s.Z=t.p+"static/media/img-login.870e82c03b4c555550cf7f4ea2d2a07d.svg"}}]);
+//# sourceMappingURL=650.f9aa9147.chunk.js.map
